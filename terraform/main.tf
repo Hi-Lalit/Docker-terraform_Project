@@ -39,31 +39,7 @@ resource "aws_instance" "docker_ec2" {
   key_name        = var.key_name
   security_groups = [aws_security_group.docker_sg.name]
 
-  user_data = <<-EOF
-                #!/bin/bash
-                set -e  # Exit if any command fails
-
-                # Update package index
-                apt update -y
-
-                # Install Docker, Docker Compose, and Git
-                apt install -y docker.io docker-compose git
-
-                # Enable and start Docker
-                systemctl enable docker
-                systemctl start docker
-
-                # Clone your repo if it doesn’t exist
-                if [ ! -d /home/ubuntu/Docker-project ]; then
-                    git clone https://github.com/Hi-Lalit/Docker_Project.git /home/ubuntu/Docker-project
-                fi
-
-                # Move into project directory
-                cd /home/ubuntu/Docker-project
-
-                # Start Docker containers
-                docker-compose up -d
-              EOF
+  user_data = file("${path.module}/user_data.sh")
 
   tags = {
     Name = "DockerWebApps"
