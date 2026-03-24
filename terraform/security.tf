@@ -2,7 +2,7 @@
 resource "aws_security_group" "docker_sg" {
   name        = "docker-sg"
   description = "Allow SSH, HTTP, custom ports"
-  vpc_id      = aws_vpc.docker_vpc.id 
+  vpc_id      = aws_vpc.docker_vpc.id
 
   ingress {
     from_port   = 22
