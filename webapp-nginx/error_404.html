@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 – Page Not Found | UIT</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center">
+            <a href="/" class="flex items-center gap-2">
+                <i class="fa-solid fa-atom text-brand-600 text-2xl"></i>
+                <span class="text-xl font-bold text-brand-900">UIT</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-grow flex items-center justify-center text-center px-4 relative">
+
+        <!-- Decorative Icons -->
+        <div class="absolute inset-0 pointer-events-none opacity-5">
+            <i class="fa-solid fa-gear text-9xl absolute top-10 left-10 animate-spin"></i>
+            <i class="fa-solid fa-microchip text-9xl absolute bottom-10 right-10"></i>
+        </div>
+
+        <div class="z-10 max-w-xl">
+            <h1 class="text-8xl sm:text-9xl font-extrabold text-brand-900 tracking-tight">
+                4<span class="text-brand-500">0</span>4
+            </h1>
+
+            <h2 class="mt-4 text-3xl sm:text-4xl font-bold text-gray-900">
+                Page Not Found
+            </h2>
+
+            <p class="mt-4 text-gray-600 text-lg">
+                The page you’re looking for doesn’t exist or has been moved.
+                Please check the URL or return to the homepage.
+            </p>
+
+            <!-- Actions -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/"
+                   class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-brand-600 text-white font-medium shadow hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-house mr-2"></i>
+                    Go to Home
+                </a>
+
+                <button onclick="history.back()"
+                        class="inline-flex items-center justify-center px-8 py-3 rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                    Go Back
+                </button>
+            </div>
+
+            <!-- Debug Console -->
+            <div class="mt-12 bg-gray-900 text-green-400 text-sm font-mono p-4 rounded-lg text-left shadow">
+                <p>> request_url_not_found</p>
+                <p>> status_code: 404</p>
+                <p>> suggestion: redirect_to_root()</p>
+                <span class="animate-pulse">_</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t py-6 text-center text-sm text-gray-500">
+        © 2025 Utkarsh Institute of Technology. All systems operational.
+    </footer>
+
+</body>
+</html>

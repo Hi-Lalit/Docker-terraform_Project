@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incredible India - Explore the Unexplored</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ea580c;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c2410c;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-zoom:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-orange-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fas fa-om text-orange-600 text-3xl"></i>
+                    <span class="serif-font text-2xl font-bold bg-gradient-to-r from-orange-600 via-white to-green-600 text-transparent bg-clip-text" style="-webkit-text-stroke: 1px #d97706;">IncredibleIndia</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-orange-600 font-medium transition">Home</a>
+                    <a href="#destinations" class="text-gray-700 hover:text-orange-600 font-medium transition">Destinations</a>
+                    <a href="#culture" class="text-gray-700 hover:text-orange-600 font-medium transition">Culture</a>
+                    <a href="#contact" class="bg-orange-600 text-white px-5 py-2 rounded-full hover:bg-orange-700 transition shadow-lg transform hover:-translate-y-0.5">Plan My Trip</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-orange-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-md font-medium">Home</a>
+                <a href="#destinations" class="block px-3 py-2 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-md font-medium">Destinations</a>
+                <a href="#culture" class="block px-3 py-2 text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-md font-medium">Culture</a>
+                <a href="#contact" class="block px-3 py-2 text-orange-600 font-bold">Plan My Trip</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg h-screen flex items-center justify-center relative">
+        <div class="text-center text-white px-4 animate-fade-in-up">
+            <h2 class="text-lg md:text-xl font-light tracking-widest uppercase mb-4 text-orange-300">Welcome to the Land of Diversity</h2>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg">Discover India</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto font-light text-gray-100">From the snow-capped Himalayas to the tropical backwaters of Kerala, experience a journey of a lifetime.</p>
+            <a href="#destinations" class="inline-block bg-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-700 transition duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                Start Exploring <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#destinations" class="text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="py-10 bg-white shadow-lg -mt-20 relative z-10 container mx-auto rounded-lg max-w-6xl mx-4 lg:mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-200">
+            <div class="p-4">
+                <div class="text-3xl font-bold text-orange-600 counter" data-target="28">0</div>
+                <div class="text-gray-600 text-sm mt-1">States</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-bold text-orange-600 counter" data-target="22">0</div>
+                <div class="text-gray-600 text-sm mt-1">Major Languages</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-bold text-orange-600 counter" data-target="40">0</div>
+                <div class="text-gray-600 text-sm mt-1">UNESCO Sites</div>
+            </div>
+            <div class="p-4">
+                <div class="text-3xl font-bold text-orange-600">5000+</div>
+                <div class="text-gray-600 text-sm mt-1">Years History</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section id="destinations" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-orange-600 font-semibold tracking-wider uppercase">Must Visit</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 mb-4">Popular Destinations</h2>
+            <div class="w-24 h-1 bg-orange-600 mx-auto rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Taj Mahal -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taj Mahal" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.9
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Taj Mahal</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> Agra</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">An immense mausoleum of white marble, built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan in memory of his favourite wife. A symbol of eternal love.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">$20 <span class="text-gray-400 text-sm font-normal">/ person</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Varanasi -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varanasi" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.8
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Varanasi</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> UP</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">The spiritual capital of India, Varanasi draws Hindu pilgrims who bathe in the Ganges River’s sacred waters and perform funeral rites. Known for its ancient Ghats and Aarti.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">Free <span class="text-gray-400 text-sm font-normal">entry</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Kerala Backwaters -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kerala" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.9
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Kerala</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> South</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">God's Own Country. Famous for its backwaters, houseboats, ayurvedic treatments, and tropical greenery. A perfect place for relaxation and nature lovers.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">$100 <span class="text-gray-400 text-sm font-normal">/ night</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Jaipur -->
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jaipur" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.7
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Jaipur</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> Rajasthan</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">The Pink City, known for the Hawa Mahal, Amer Fort, and City Palace. Explore the rich history of Rajputs, vibrant bazaars, and delicious Rajasthani cuisine.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">$15 <span class="text-gray-400 text-sm font-normal">/ person</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Card 5: Goa -->
+             <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Goa" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.8
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Goa</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> West Coast</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">India's party capital, famous for its pristine beaches, Portuguese heritage, nightlife, and seafood. A blend of Indian and Portuguese cultures.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">Free <span class="text-gray-400 text-sm font-normal">beaches</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Card 6: Ladakh -->
+             <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 card-zoom cursor-pointer">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ladakh" class="w-full h-full object-cover transition duration-500">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-orange-600 shadow-sm">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i> 4.9
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-end mb-2">
+                        <h3 class="text-2xl font-bold text-gray-900 group-hover:text-orange-600 transition">Ladakh</h3>
+                        <span class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt text-red-500 mr-1"></i> North</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-3">A land of high passes, barren mountains, and crystal clear lakes. A paradise for bikers, trekkers, and those seeking tranquility in monasteries.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-orange-600 font-bold">$50 <span class="text-gray-400 text-sm font-normal">/ permit</span></span>
+                        <button class="text-gray-900 font-medium hover:text-orange-600 transition flex items-center">Explore <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cultural Diversity Section -->
+    <section id="culture" class="bg-gray-100 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-orange-600 font-bold uppercase tracking-wide">Incredible Culture</span>
+                    <h2 class="text-4xl font-bold text-gray-900 serif-font">A Mosaic of Traditions</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        India is a land where the modern world meets ancient traditions. With over 2,000 ethnic groups, the cultural diversity of India is unmatched. From the colorful festivals of Holi and Diwali to the classical dance forms like Kathakali and Bharatanatyam, every corner tells a story.
+                    </p>
+                    <ul class="space-y-3 mt-4">
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-orange-600 mr-3"></i> 22 Official Languages</li>
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-orange-600 mr-3"></i> Birthplace of Yoga & Ayurveda</li>
+                        <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-orange-600 mr-3"></i> Rich Culinary Heritage</li>
+                    </ul>
+                    <button class="bg-gray-900 text-white px-8 py-3 rounded-full mt-4 hover:bg-gray-800 transition shadow-lg">Learn More</button>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="rounded-lg shadow-lg transform translate-y-8" alt="Culture 1">
+                    <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="rounded-lg shadow-lg" alt="Culture 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter / CTA -->
+    <section class="py-20 bg-orange-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to start your journey?</h2>
+            <p class="text-lg text-orange-100 mb-8">Subscribe to our newsletter for curated travel itineraries and exclusive deals.</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center" onsubmit="event.preventDefault(); alert('Thank you for subscribing! We will send you updates soon.');">
+                <input type="email" placeholder="Enter your email address" class="px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-300 w-full sm:w-96 shadow-lg">
+                <button type="submit" class="bg-gray-900 text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition shadow-lg">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-om text-orange-500 text-2xl"></i>
+                        <span class="text-2xl font-bold font-serif">IncredibleIndia</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Promoting the rich cultural heritage and breathtaking landscapes of India to the world. Explore the unexplored.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b-2 border-orange-600 inline-block pb-1">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="#destinations" class="hover:text-orange-500 transition">Destinations</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Tour Packages</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-orange-500 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b-2 border-orange-600 inline-block pb-1">Contact Info</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-orange-500"></i> Ministry of Tourism, Transport Bhawan, Parliament Street, New Delhi</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-3 text-orange-500"></i> +91 1800-11-1363</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-3 text-orange-500"></i> info@incredibleindia.org</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 IncredibleIndia Tourism. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('bg-white/95');
+                navbar.classList.add('bg-white');
+            } else {
+                // navbar.classList.remove('shadow-md');
+                navbar.classList.add('bg-white/95');
+                navbar.classList.remove('bg-white');
+            }
+        });
+
+        // Simple Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        let hasAnimated = false;
+
+        const animateCounters = () => {
+            if (hasAnimated) return;
+            
+            const statsSection = document.querySelector('.counter').closest('section');
+            const sectionPos = statsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.3;
+
+            if(sectionPos < screenPos) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const inc = target / 100; // speed
+
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        if(count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    }
+                    updateCount();
+                });
+                hasAnimated = true;
+            }
+        };
+
+        window.addEventListener('scroll', animateCounters);
+    </script>
+</body>
+</html>

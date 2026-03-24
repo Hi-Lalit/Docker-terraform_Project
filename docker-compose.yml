@@ -1,0 +1,13 @@
+version: '3'
+services:
+  apache-site:
+    build: ./webapp-apache
+    container_name: apache-container
+    ports:
+      - "8081:80"
+
+  nginx-site:
+    build: ./webapp-nginx
+    container_name: nginx-container
+    ports:
+      - "8082:80"
