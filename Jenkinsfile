@@ -6,7 +6,15 @@ pipeline {
         IMAGE_TAG = "v1.0.${env.BUILD_NUMBER}"
     }
 
-    stages {
+        stage('Terraform Apply') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+       
 
 
         stage('Build Docker Images') {
