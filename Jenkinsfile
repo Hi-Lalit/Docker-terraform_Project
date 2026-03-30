@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'TERRAFORM_ACTION', 
+            choices: ['apply', 'destroy'], 
+            description: 'Choose Terraform action'
+        )
+    }
+
     environment {
         DOCKER_HUB = "gautam009"
         IMAGE_TAG = "v1.0.${env.BUILD_NUMBER}"
@@ -8,17 +16,27 @@ pipeline {
 
     stages {
 
-        stage('Terraform Apply') {
+        stage('Terraform Action') {
             steps {
                 dir('terraform') {
                     withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
                         credentialsId: 'aws-cred'
                     ]]) {
-                        sh '''
-                        terraform init
-                        terraform apply -auto-approve
-                        '''
+                        script {
+                            if (params.TERRAFORM_ACTION == 'apply') {
+                                sh '''
+                                terraform init
+                                terraform apply -auto-approve
+                                '''
+                            } else if (params.TERRAFORM_ACTION == 'destroy') {
+                                input message: 'Are you sure you want to destroy infrastructure?'
+                                sh '''
+                                terraform init
+                                terraform destroy -auto-approve
+                                '''
+                            }
+                        }
                     }
                 }
             }
