@@ -1,0 +1,71 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_HUB = "gautam009"
+        IMAGE_TAG = "v1.0.${env.BUILD_NUMBER}"
+    }
+
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/Hi-Lalit/Docker-terraform_Project.git'
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    sh '''
+                    docker build -t $DOCKER_HUB/nginx-site:$IMAGE_TAG app/webapp-nginx
+                    docker build -t $DOCKER_HUB/apache-site:$IMAGE_TAG app/webapp-apache
+                    '''
+                }
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-cred',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                sh '''
+                docker push $DOCKER_HUB/nginx-site:$IMAGE_TAG
+                docker push $DOCKER_HUB/apache-site:$IMAGE_TAG
+                '''
+            }
+        }
+
+        stage('Deploy with Docker Compose') {
+            steps {
+                dir('app') {
+                    sh '''
+                    docker-compose down || true
+                    docker-compose up -d
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Deployment Successful!'
+        }
+        failure {
+            echo '❌ Pipeline Failed!'
+        }
+    }
+}
