@@ -8,11 +8,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git 'https://github.com/Hi-Lalit/Docker-terraform_Project.git'
-            }
-        }
 
         stage('Build Docker Images') {
             steps {
