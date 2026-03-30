@@ -11,20 +11,25 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 dir('terraform') {
-                    sh 'terraform init'
-                    sh 'terraform apply -auto-approve'
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws-cred'
+                    ]]) {
+                        sh '''
+                        terraform init
+                        terraform apply -auto-approve
+                        '''
+                    }
                 }
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                script {
-                    sh '''
-                    docker build -t $DOCKER_HUB/nginx-site:$IMAGE_TAG app/webapp-nginx
-                    docker build -t $DOCKER_HUB/apache-site:$IMAGE_TAG app/webapp-apache
-                    '''
-                }
+                sh '''
+                docker build -t $DOCKER_HUB/nginx-site:$IMAGE_TAG app/webapp-nginx
+                docker build -t $DOCKER_HUB/apache-site:$IMAGE_TAG app/webapp-apache
+                '''
             }
         }
 
@@ -50,7 +55,6 @@ pipeline {
                 '''
             }
         }
-
     }
 
     post {
