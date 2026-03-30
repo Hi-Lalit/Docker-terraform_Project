@@ -6,6 +6,8 @@ pipeline {
         IMAGE_TAG = "v1.0.${env.BUILD_NUMBER}"
     }
 
+    stages {
+
         stage('Terraform Apply') {
             steps {
                 dir('terraform') {
@@ -14,8 +16,6 @@ pipeline {
                 }
             }
         }
-       
-
 
         stage('Build Docker Images') {
             steps {
