@@ -43,16 +43,6 @@ pipeline {
             }
         }
 
-        stage('Deploy with Docker Compose') {
-            steps {
-                dir('app') {
-                    sh '''
-                    docker-compose down || true
-                    docker-compose up -d
-                    '''
-                }
-            }
-        }
     }
 
     post {
